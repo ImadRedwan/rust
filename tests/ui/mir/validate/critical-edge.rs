@@ -12,6 +12,8 @@ use core::intrinsics::mir::*;
 #[custom_mir(dialect = "runtime", phase = "optimized")]
 #[inline(always)]
 pub fn f(a: u32) -> u32 {
+//~^ ERROR broken MIR in Item
+//~| ERROR encountered critical edge in `Call` terminator
     mir! {
         {
             match a {
@@ -29,5 +31,3 @@ pub fn f(a: u32) -> u32 {
         }
     }
 }
-
-//~? RAW encountered critical edge in `Call` terminator
